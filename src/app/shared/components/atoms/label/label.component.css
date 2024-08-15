@@ -1,0 +1,31 @@
+/* label.component.css */
+.label {
+  display: inline-block;
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  color: var(--text-color);
+}
+
+.label--default {
+  color: var(--text-color);
+}
+
+.label--primary {
+  color: var(--bg-color);
+}
+
+.label--secondary {
+  color: var(--main-color);
+}
+
+.label--small {
+  font-size: calc(var(--font-size) * 0.875); /* 14px */
+}
+
+.label--medium {
+  font-size: var(--font-size);
+}
+
+.label--large {
+  font-size: calc(var(--font-size) * 1.125); /* 18px */
+}

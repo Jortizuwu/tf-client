@@ -1,3 +1,9 @@
-.bg-red{
-  background-color: rebeccapurple;
+.sibar-menu {
+  height: 100vw;
+  border: none;
+  width: 300px;
+  border-radius: 0;
+  padding: 20px;
+  margin: 0;
+  border-left: 1px solid var(--primary-color);
 }

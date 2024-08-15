@@ -1,3 +1,9 @@
-.bg-red-500{
-  background-color: red;
+.navbar-menu {
+  height: 50px;
+  border: none;
+  width: 100%;
+  border-radius: 0;
+  padding: 20px;
+  margin: 0;
+  background-color: blue;
 }
