@@ -14,6 +14,6 @@ export class AppComponent implements OnInit {
   constructor(private themeService: ThemesService) {}
 
   ngOnInit(): void {
-    this.themeService.setTheme('80s_after_dark.css');
+    this.themeService.setTheme('cheesecake');
   }
 }

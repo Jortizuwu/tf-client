@@ -1,0 +1,18 @@
+.character {
+  color: var(--main-color);
+  padding: 0;
+  margin: 0;
+  display: inline;
+}
+
+.white-space {
+  white-space: pre;
+}
+
+.character--error {
+  color: var(--error-color);
+}
+
+:host {
+  display: inline;
+}

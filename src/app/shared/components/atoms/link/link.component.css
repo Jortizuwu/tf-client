@@ -1,0 +1,5 @@
+.link-text {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: all 0.2s linear;
+}

@@ -1,0 +1,35 @@
+.home--container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.home--menu {
+  background-color: var(--sub-alt-color);
+  border-radius: 10px;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  gap: 10px 10px;
+  height: 2rem;
+  margin: 0px auto;
+  max-width: 750px;
+  padding: 10px;
+  width: 70%;
+}
+
+.home--menu__content {
+  margin: 0px auto;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+}
+
+.home--main {
+  width: 100%;
+  height: 100%;
+}

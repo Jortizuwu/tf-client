@@ -1,0 +1,8 @@
+.divider {
+  width: 5px;
+  height: 20px;
+  background-color: var(--caret-color);
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 0.5rem;
+}

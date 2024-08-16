@@ -1,8 +1,23 @@
-<section>
-  <app-button
-    variant="primary"
-    size="large"
-    [disabled]="false"
-    label="Primary Button" />
-  <app-label text="Default Label" color="default" size="medium" />
+<section class="home--container">
+  <div class="home--menu">
+    <div class="home--menu__content">
+      <app-label text="Home" />
+      <app-label text="Home" />
+    </div>
+    <app-divider />
+    <div class="home--menu__content">
+      <app-label text="Home" />
+      <app-label text="Home" />
+      <app-label text="Home" />
+      <app-label text="Home" />
+    </div>
+    <app-divider />
+    <div class="home--menu__content">
+      <app-label text="Home" />
+      <app-label text="Home" />
+    </div>
+  </div>
+  <main class="home--main">
+    <app-typer />
+  </main>
 </section>

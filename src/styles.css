@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
 /* Document
@@ -31,6 +33,12 @@ body {
 
 main {
   display: block;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 /**
@@ -352,6 +360,13 @@ template {
 }
 
 /* END OF NORMALIZE */
+/* Google Fonts Import Link */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
 
 :root {
   /* base styles */
@@ -370,4 +385,33 @@ template {
 
 .w-full {
   width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.blur-md {
+  filter: blur(4px);
+}
+
+.blur-none {
+  filter: none;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.border-none {
+  border: 0px;
+  outline: none;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.opacity-100 {
+  opacity: 1;
 }
