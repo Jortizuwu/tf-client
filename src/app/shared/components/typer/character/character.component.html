@@ -1,7 +1,9 @@
 <span
   [ngClass]="{
-    'character--error': checkCorrectCharacter(),
+    'character-error': isCorrectCharacter,
     'white-space': isSpace,
+    'white-space__error': isErrorSpace,
+    'character-color__main': !isMain,
   }"
   class="character">
   {{ letter }}

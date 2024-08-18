@@ -31,7 +31,20 @@
   line-height: 2.5rem;
   font-weight: 400;
   text-align: start;
-  display: inline-flex; /* Alinea los caracteres en línea */
-  flex-wrap: wrap; /* Permite el envolvimiento si el contenedor es demasiado pequeño */
-  gap: 0; /* Asegúrate de que no haya espacio entre caracteres */
+  align-items: baseline;
+  display: inline-flex;
+  width: auto;
+  gap: 0;
+  flex-direction: row;
+  align-content: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.p-absolute {
+  position: absolute;
+}
+
+.z-100 {
+  z-index: 100;
 }

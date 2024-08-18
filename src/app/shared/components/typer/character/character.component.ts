@@ -1,34 +1,63 @@
+import { UserTypingService } from './../../../services/UserTypingService.service';
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
+import { CaretComponent } from '../caret/caret.component';
 
 @Component({
   selector: 'app-character',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CaretComponent],
   templateUrl: './character.component.html',
-  styleUrl: './character.component.css',
+  styleUrls: ['./character.component.css'],
 })
-export class CharacterComponent implements OnInit {
-  @Input()
-  letter: string = '';
+export class CharacterComponent implements OnInit, OnChanges {
+  @Input() letter: string = '';
+  @Input() index: number = 0;
+  @Input() text: string[] = [];
+  @Input() isMain: boolean = false;
 
-  @Input()
-  index: number = 0;
-
-  @Input()
-  text: string[] = [];
-
+  textToWrite: string = '';
   isSpace: boolean = false;
 
-  constructor() {}
+  isCorrectCharacter: boolean = false;
+  isErrorSpace: boolean = false;
+
+  constructor(private userTypingService: UserTypingService) {
+    this.textToWrite = this.userTypingService.getTextToWrite();
+  }
 
   ngOnInit(): void {
-    if (this.letter === ' ') {
-      this.isSpace = true;
+    this.updateIsSpace();
+    this.updateCharacterStatus();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['letter'] || changes['index'] || changes['text'] || changes['isMain']) {
+      this.updateIsSpace();
+      this.updateCharacterStatus();
     }
   }
 
-  checkCorrectCharacter() {
-    return this.text[this.index] === this.letter;
+  updateCharacterStatus(): void {
+    this.isCorrectCharacter = this.checkCorrectCharacter();
+    this.isErrorSpace = this.isSpace && this.isCorrectCharacter;
+  }
+
+  updateIsSpace(): void {
+    this.isSpace = this.letter === ' ';
+  }
+
+  checkCorrectCharacter(): boolean {
+    const isCorrect = this.text[this.index] === this.letter;
+    if (this.isMain) {
+      this.letter = this.textToWrite.split('')[this.index];
+    }
+    return isCorrect;
   }
 }

@@ -4,7 +4,7 @@
     class="typer--wrapper"
     [ngClass]="{
       'opacity-0': focused,
-      'opacity-100': !focused,
+      'opacity-100': focused,
     }">
     <svg
       style="height: 24px; width: 24px; margin-right: 10px"
@@ -20,27 +20,37 @@
     </svg>
     <span> Click here or start typing to focus </span>
   </div>
-  <span>{{ getTextToWriteToString }}</span>
-  <span>{{ letters }}</span>
   <div
     [ngClass]="{
       'blur-none': focused,
-      'cursor-pointer blur-md': !focused,
+      'cursor-pointer blur-md': focused,
     }"
     class="border-none"
     tabindex="0"
     (focus)="onFocus()"
     (blur)="onBlur()">
     <div class="typer--content">
-      <app-caret />
-      <div class="typer--text__back">
+      <div class="typer--text__back p-absolute Z-100">
         <app-character
           *ngFor="let letter of letters; let i = index"
           [text]="text"
           [letter]="letter"
+          [isMain]="false"
           [index]="i">
         </app-character>
       </div>
+      <div class="typer--text__back p-absolute ">
+        <app-character
+          *ngFor="let letter of text; let i = index"
+          [text]="text"
+          [letter]="letter"
+          [isMain]="true"
+          [index]="i">
+        </app-character>
+        <app-caret class="opacity-100" />
+      </div>
+
+
     </div>
     <app-label class="text-center" text="lenguaje!" />
   </div>

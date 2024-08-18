@@ -1,15 +1,23 @@
 .character {
-  color: var(--main-color);
+  color: var(--text-color);
   padding: 0;
   margin: 0;
-  display: inline;
+}
+
+.character-color__main {
+  color: var(--main-color);
 }
 
 .white-space {
+  color: var(--main-color);
   white-space: pre;
 }
 
-.character--error {
+.white-space__error {
+  background-color: var(--error-color);
+}
+
+.character-error {
   color: var(--error-color);
 }
 

@@ -1,36 +1,13 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
-import { LabelComponent } from '../atoms/label/label.component';
+import { UserTypingService } from './../../services/UserTypingService.service';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { MatchService } from './../../services/match.service';
+import { ActivatedRoute } from '@angular/router';
+import { ChatMessage } from '../../models/match.model';
 import { CommonModule } from '@angular/common';
+import { LabelComponent } from '../atoms/label/label.component';
 import { CaretComponent } from './caret/caret.component';
 import { CharacterComponent } from './character/character.component';
-
-const ingnoreKeys = [
-  'Backspace',
-  'Delete',
-  'ArrowLeft',
-  'ArrowRight',
-  'ArrowUp',
-  'ArrowDown',
-  'Control',
-  'Alt',
-  'Shift',
-  'Meta',
-  'CapsLock',
-  'NumLock',
-  'ScrollLock',
-  'PrintScreen',
-  'Pause',
-  'Insert',
-  'Home',
-  'End',
-  'PageUp',
-  'PageDown',
-  'Tab',
-  'Enter',
-  'Escape',
-  'Space',
-];
-
+import { keyframes } from '@angular/animations';
 @Component({
   selector: 'app-typer',
   standalone: true,
@@ -41,33 +18,82 @@ const ingnoreKeys = [
 export class TyperComponent implements OnInit {
   text: string[] = [];
   focused = true;
-  private textToWrite: string = 'Hola mundo desde mi casa';
+
   letters: string[] = [];
 
-  constructor() {
-    this.letters = this.textToWrite.split('');
+  messageInput: string = '';
+  userId: string = '';
+  messageList: ChatMessage[] = [];
+
+  constructor(
+    private userTypingService: UserTypingService,
+    // private matchService: MatchService,
+    private route: ActivatedRoute
+  ) {
+    this.letters = this.userTypingService.getTextToWrite().split('');
   }
-  ngOnInit(): void {}
 
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent) {
-    if (this.text.length > 0 && event.key === 'Backspace') {
-      this.text.pop();
-    }
+    const ignoreKeys = [
+      'Delete',
+      'ArrowLeft',
+      'ArrowRight',
+      'ArrowUp',
+      'ArrowDown',
+      'Control',
+      'Alt',
+      'Shift',
+      'Meta',
+      'CapsLock',
+      'NumLock',
+      'ScrollLock',
+      'PrintScreen',
+      'Pause',
+      'Insert',
+      'Home',
+      'End',
+      'PageUp',
+      'PageDown',
+      'Tab',
+      'Enter',
+      'Escape',
+      'Space',
+    ];
 
-    if (ingnoreKeys.includes(event.key)) {
+    if (ignoreKeys.includes(event.key)) {
       return;
     }
 
-    this.text.push(event.key);
-  }
+    if (event.key === 'Backspace') {
+      this.text.pop();
+    } else {
+      this.text.push(event.key);
+    }
 
-  getLengthOfWordOftype(position: number) {
-    return this.textToWrite[position].length;
+    this.userTypingService.setTextUserTyping(this.text.join(''));
+    // this.sendMessage(this.userType);
   }
 
   get getTextToWriteToString() {
-    return this.textToWrite;
+    return this.userTypingService.getTextToWrite();
+  }
+
+  ngOnInit(): void {
+    // this.userId = this.route.snapshot.params['userId'];
+    // const roomId = 'f8183a7e-f91b-4e81-bef9-7123f9c76a28';
+    // this.matchService.joinRoom(roomId);
+    // this.matchService.getMessageSubject().subscribe((messages: string) => {
+    //   this.userType = messages;
+    // });
+  }
+
+  sendMessage(message: string) {
+    // this.matchService.sendMessage(
+    //   'f8183a7e-f91b-4e81-bef9-7123f9c76a28',
+    //   message
+    // );
+    // this.messageInput = '';
   }
 
   onFocus() {
@@ -75,6 +101,6 @@ export class TyperComponent implements OnInit {
   }
 
   onBlur() {
-    this.focused = true;
+    this.focused = false;
   }
 }
