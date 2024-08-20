@@ -1,13 +1,12 @@
 .caret {
   position: absolute;
-  width: 3px;
-  height: 2.2em;
+  display: block;
+  width: 4px;
+  height: 1.3em;
   background-color: var(--caret-color);
   border-radius: 3px;
-  margin-right: 2px;
-  top: 30px;
   transform: translateY(-50%);
-  animation: blink 1s step-start infinite;
+  animation: blink 0.8s step-start infinite;
 }
 
 /* Animación del caret */

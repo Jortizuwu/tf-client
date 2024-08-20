@@ -2,6 +2,8 @@
   <layout-navbar />
   <div class="w-full layout-main">
     <router-outlet />
+    <app-button label="+" variant="floating" (click)="onClick()" />
   </div>
+  <app-modal />
   <layout-footer />
 </div>

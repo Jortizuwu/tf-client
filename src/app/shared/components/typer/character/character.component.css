@@ -9,7 +9,8 @@
 }
 
 .white-space {
-  color: var(--main-color);
+  background-color: transparent;
+  /* margin-left: 10px; */
   white-space: pre;
 }
 

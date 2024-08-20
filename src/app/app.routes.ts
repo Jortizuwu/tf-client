@@ -15,6 +15,14 @@ export const routes: Routes = [
           import('./pages/home/home.component').then(m => m.HomeComponent),
       },
       {
+        path: 'practice',
+        title: 'practice',
+        loadComponent: () =>
+          import('./pages/practice/practice.component').then(
+            m => m.PracticeComponent
+          ),
+      },
+      {
         path: 'settings',
         title: 'settings',
         loadComponent: () =>

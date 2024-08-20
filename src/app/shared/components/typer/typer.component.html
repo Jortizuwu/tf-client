@@ -39,7 +39,7 @@
           [index]="i">
         </app-character>
       </div>
-      <div class="typer--text__back p-absolute ">
+      <div class="typer--text__back p-absolute">
         <app-character
           *ngFor="let letter of text; let i = index"
           [text]="text"
@@ -47,10 +47,10 @@
           [isMain]="true"
           [index]="i">
         </app-character>
-        <app-caret class="opacity-100" />
+        <div>
+          <app-caret class="opacity-100" />
+        </div>
       </div>
-
-
     </div>
     <app-label class="text-center" text="lenguaje!" />
   </div>

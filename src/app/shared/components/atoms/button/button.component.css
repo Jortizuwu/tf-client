@@ -26,11 +26,18 @@
   background-color: var(--caret-color);
 }
 
-.button--tertiary {
+.button--floating {
+  height: 40px;
+  position: absolute;
+  bottom: 100px;
+  right: 20px;
+  z-index: 10;
+  border-radius: 100%;
+  font-size: 24px;
   background-color: var(--sub-color);
 }
 
-.button--tertiary:hover {
+.button--floating :hover {
   background-color: var(--sub-alt-color);
 }
 

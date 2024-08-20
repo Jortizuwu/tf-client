@@ -3,11 +3,12 @@ import { ButtonComponent } from '../../shared/components/atoms/button/button.com
 import { LabelComponent } from '../../shared/components/atoms/label/label.component';
 import { DividerComponent } from "../../shared/components/atoms/divider/divider.component";
 import { TyperComponent } from "../../shared/components/typer/typer.component";
+import { CardComponent } from "../../shared/components/atoms/card/card.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ButtonComponent, LabelComponent, DividerComponent, TyperComponent],
+  imports: [ButtonComponent, LabelComponent, DividerComponent, TyperComponent, CardComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })

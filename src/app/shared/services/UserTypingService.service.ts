@@ -7,7 +7,7 @@ export class UserTypingService {
   private isUserTyping: boolean = false;
   private textUserTyping: string = '';
   private textToWrite: string =
-    'Hola mundo desde mi casa un saludo a todos ustedes jhlaksj adalkjh';
+    'Hola mundo desde mi casa un saludo a todos ustedes hola mundo desde mi casa un saludo a todos ustedes jsadkj akj sdkajhsd gakjsdhagksdjhagskd jahsdg akjshdgak jshdg akjshdgakjh';
 
   constructor() {}
 

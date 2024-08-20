@@ -35,6 +35,11 @@ export class TyperComponent implements OnInit {
 
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent) {
+
+    if (this.text.length === this.userTypingService.getTextToWrite().length && event.key !== 'Backspace') {
+      return;
+    }
+
     const ignoreKeys = [
       'Delete',
       'ArrowLeft',

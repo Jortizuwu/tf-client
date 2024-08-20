@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 
 export default interface IButtonProps {
-  variant: 'primary' | 'secondary' | 'tertiary';
+  variant: 'primary' | 'secondary' | 'floating';
   size: 'small' | 'medium' | 'large';
   disabled: boolean;
   label: string;
@@ -22,21 +22,17 @@ export default interface IButtonProps {
   styleUrl: './button.component.css',
 })
 export class ButtonComponent implements IButtonProps {
-  @Input() variant: 'primary' | 'secondary' | 'tertiary' = 'primary';
+  @Input() variant: 'primary' | 'secondary' | 'floating' = 'primary';
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
   @Input() disabled: boolean = false;
   @Input() label: string = '';
 
-  private _variant = signal<'primary' | 'secondary' | 'tertiary'>(this.variant);
-  private _size = signal<'small' | 'medium' | 'large'>(this.size);
-  private _disabled = signal<boolean>(this.disabled);
-
   get buttonClass() {
     return [
       'button',
-      `button--${this._variant()}`,
-      `button--${this._size()}`,
-      this._disabled() ? 'button--disabled' : '',
+      `button--${this.variant}`,
+      `button--${this.size}`,
+      this.disabled ? 'button--disabled' : '',
     ].join(' ');
   }
 }
