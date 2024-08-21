@@ -1,4 +1,4 @@
-import { THEME_LIST } from "../constans/theme-linst";
+import { THEME_LIST } from "../constans/theme-list";
 
 export interface ITheme {
   name: string;

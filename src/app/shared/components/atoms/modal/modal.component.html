@@ -1,13 +1,13 @@
 <section class="modal-container" [ngStyle]="{ display: isModalOpen }">
   <div class="modal">
-    <app-button label="x" variant="primary" (click)="onClick()" />
+    <app-button
+      label="x"
+      variant="primary"
+      (click)="onClick()"
+      class="modal__close-btn" />
     <div>
-      <h1 class="modal__title">Modal 2 Title</h1>
-      <p class="modal__text">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis ex
-        dicta maiores libero minus obcaecati iste optio, eius labore
-        repellendus.
-      </p>
+      <h1 class="modal__title">Create match</h1>
+
       <a href="#m2-c" class="link-2"></a>
     </div>
   </div>
