@@ -1,12 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  effect,
-  HostBinding,
-  Input,
-  OnInit,
-  signal,
-} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 export default interface IButtonProps {
   variant: 'primary' | 'secondary' | 'floating';

@@ -38,7 +38,12 @@ export class CharacterComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['letter'] || changes['index'] || changes['text'] || changes['isMain']) {
+    if (
+      changes['letter'] ||
+      changes['index'] ||
+      changes['text'] ||
+      changes['isMain']
+    ) {
       this.updateIsSpace();
       this.updateCharacterStatus();
     }

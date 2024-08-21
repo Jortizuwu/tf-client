@@ -1,4 +1,4 @@
-import { THEME_LIST } from "../constans/theme-list";
+import { THEME_LIST } from '../constans/theme-list';
 
 export interface ITheme {
   name: string;
@@ -8,4 +8,4 @@ export interface ITheme {
   textColor: string;
 }
 
-export type ThemeName = typeof THEME_LIST[number]['name'];
+export type ThemeName = (typeof THEME_LIST)[number]['name'];

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { LinkComponent } from '../../atoms/link/link.component';
 
 @Component({
-  selector: 'layout-footer',
+  selector: 'app-layout-footer',
   standalone: true,
   imports: [LinkComponent],
   templateUrl: './footer.component.html',

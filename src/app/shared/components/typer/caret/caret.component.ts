@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './caret.component.html',
-  styleUrl: './caret.component.css'
+  styleUrl: './caret.component.css',
 })
-export class CaretComponent {
-
-}
+export class CaretComponent {}

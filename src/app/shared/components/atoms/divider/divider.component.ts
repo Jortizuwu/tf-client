@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './divider.component.html',
-  styleUrl: './divider.component.css'
+  styleUrl: './divider.component.css',
 })
-export class DividerComponent {
-
-}
+export class DividerComponent {}

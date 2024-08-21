@@ -10,7 +10,7 @@
     "prepare": "husky",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
-    "prettier": "npx prettier --write ."
+    "format": "npx prettier --write ."
   },
   "private": true,
   "dependencies": {

@@ -105,7 +105,7 @@ export class TyperComponent implements OnInit {
     }
   }
 
-  sendMessage(message: string) {
+  sendMessage() {
     // this.matchService.sendMessage(
     //   'f8183a7e-f91b-4e81-bef9-7123f9c76a28',
     //   message

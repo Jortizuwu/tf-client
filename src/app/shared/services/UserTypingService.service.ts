@@ -6,8 +6,7 @@ import { Injectable } from '@angular/core';
 export class UserTypingService {
   private isUserTyping: boolean = false;
   private textUserTyping: string = '';
-  private textToWrite: string =
-    '';
+  private textToWrite: string = '';
 
   constructor() {}
 
