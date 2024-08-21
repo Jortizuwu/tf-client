@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ListMatchResponse } from '../models/match.model';
+import { GetMatchResponse, ListMatchResponse } from '../models/match.model';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -13,5 +13,9 @@ export class MatchService {
 
   ListMatch() {
     return this.http.get<ListMatchResponse>(this.matchUrl);
+  }
+
+  getMatch(id: string) {
+    return this.http.get<GetMatchResponse>(`${this.matchUrl}/${id}`);
   }
 }

@@ -1,15 +1,15 @@
+import { Response } from './response.model';
+
 export interface ChatMessage {
   message: string;
   user: string;
 }
-export interface ListMatchResponse {
-  code: number;
-  path: string;
-  success: boolean;
+export interface ListMatchResponse extends Response<Match[]> {
   data: Match[];
-  isArray: boolean;
-  ip: string;
-  status: string;
+}
+
+export interface GetMatchResponse extends Response<Match> {
+  data: Match;
 }
 
 export interface Match {

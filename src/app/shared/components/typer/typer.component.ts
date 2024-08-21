@@ -8,6 +8,7 @@ import { LabelComponent } from '../atoms/label/label.component';
 import { CaretComponent } from './caret/caret.component';
 import { CharacterComponent } from './character/character.component';
 import { keyframes } from '@angular/animations';
+import { LoaderService } from '../../services/loader.service';
 @Component({
   selector: 'app-typer',
   standalone: true,
@@ -18,25 +19,26 @@ import { keyframes } from '@angular/animations';
 export class TyperComponent implements OnInit {
   text: string[] = [];
   focused = true;
-
   letters: string[] = [];
+  isPractice: boolean = false;
 
   messageInput: string = '';
-  userId: string = '';
+  matchId: string = '';
   messageList: ChatMessage[] = [];
 
   constructor(
     private userTypingService: UserTypingService,
-    // private matchService: MatchService,
-    private route: ActivatedRoute
-  ) {
-    this.letters = this.userTypingService.getTextToWrite().split('');
-  }
+    private matchService: MatchService,
+    private route: ActivatedRoute,
+    private loaderService: LoaderService
+  ) {}
 
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent) {
-
-    if (this.text.length === this.userTypingService.getTextToWrite().length && event.key !== 'Backspace') {
+    if (
+      this.text.length === this.userTypingService.getTextToWrite().length &&
+      event.key !== 'Backspace'
+    ) {
       return;
     }
 
@@ -85,12 +87,25 @@ export class TyperComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.userId = this.route.snapshot.params['userId'];
-    // const roomId = 'f8183a7e-f91b-4e81-bef9-7123f9c76a28';
+    this.isPracticeMode();
+    if (!this.isPractice) {
+      this.matchId = this.route.snapshot.params['id'];
+      this.getMatchData();
+      // const roomId = 'f8183a7e-f91b-4e81-bef9-7123f9c76a28';
+    }
+
     // this.matchService.joinRoom(roomId);
     // this.matchService.getMessageSubject().subscribe((messages: string) => {
     //   this.userType = messages;
     // });
+  }
+
+  isPracticeMode() {
+    const id = this.route.snapshot.params['id'];
+
+    if (!id) {
+      this.isPractice = true;
+    }
   }
 
   sendMessage(message: string) {
@@ -99,6 +114,25 @@ export class TyperComponent implements OnInit {
     //   message
     // );
     // this.messageInput = '';
+  }
+
+  getMatchData() {
+    this.loaderService.show();
+    this.matchService.getMatch(this.matchId).subscribe(data => {
+      if (
+        data &&
+        data.data &&
+        data.data.quotes &&
+        data.data.quotes.length > 0
+      ) {
+        const quote = data.data.quotes[0];
+        if (quote && quote.content) {
+          this.userTypingService.setTextToWrite(quote.content);
+          this.letters = quote.content.split('');
+        }
+      }
+    });
+    this.loaderService.hide();
   }
 
   onFocus() {

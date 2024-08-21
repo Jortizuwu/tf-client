@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     loadComponent: () =>
       import('./shared/components/layout/layout.component').then(
         m => m.LayoutComponent
@@ -21,6 +21,12 @@ export const routes: Routes = [
           import('./pages/practice/practice.component').then(
             m => m.PracticeComponent
           ),
+      },
+      {
+        path: 'match/:id',
+        title: 'match',
+        loadComponent: () =>
+          import('./pages/match/match.component').then(m => m.MatchComponent),
       },
       {
         path: 'settings',

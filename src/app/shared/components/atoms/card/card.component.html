@@ -1,15 +1,15 @@
 <div class="card">
   <div class="card-item">
-    <a href="#" class="card-item__link">
+    <a [routerLink]="['match', match.id]" href="#" class="card-item__link">
       <div class="card-item__bg"></div>
 
       <div class="card-item__title">
-        {{match.status}}
+        {{ match.status }}
       </div>
 
       <div class="card-item__date-box">
         Start:
-        <span class="card-item__date">{{match.createdAt}}</span>
+        <span class="card-item__date">{{ match.createdAt | date }}</span>
       </div>
     </a>
   </div>
