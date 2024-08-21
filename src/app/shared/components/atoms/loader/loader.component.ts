@@ -9,12 +9,10 @@ import { CommonModule } from '@angular/common';
   templateUrl: './loader.component.html',
   styleUrl: './loader.component.css',
 })
-export class LoaderComponent implements OnInit {
-  isLoading = false;
-
+export class LoaderComponent {
   constructor(private loaderService: LoaderService) {}
 
-  ngOnInit(): void {
-    this.loaderService.getLoading();
+  isLoading(): boolean {
+    return this.loaderService.getLoading();
   }
 }

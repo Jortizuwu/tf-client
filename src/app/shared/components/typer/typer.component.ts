@@ -7,8 +7,6 @@ import { CommonModule } from '@angular/common';
 import { LabelComponent } from '../atoms/label/label.component';
 import { CaretComponent } from './caret/caret.component';
 import { CharacterComponent } from './character/character.component';
-import { keyframes } from '@angular/animations';
-import { LoaderService } from '../../services/loader.service';
 @Component({
   selector: 'app-typer',
   standalone: true,
@@ -29,8 +27,7 @@ export class TyperComponent implements OnInit {
   constructor(
     private userTypingService: UserTypingService,
     private matchService: MatchService,
-    private route: ActivatedRoute,
-    private loaderService: LoaderService
+    private route: ActivatedRoute
   ) {}
 
   @HostListener('window:keydown', ['$event'])
@@ -117,7 +114,6 @@ export class TyperComponent implements OnInit {
   }
 
   getMatchData() {
-    this.loaderService.show();
     this.matchService.getMatch(this.matchId).subscribe(data => {
       if (
         data &&
@@ -132,7 +128,6 @@ export class TyperComponent implements OnInit {
         }
       }
     });
-    this.loaderService.hide();
   }
 
   onFocus() {

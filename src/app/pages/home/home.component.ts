@@ -7,7 +7,6 @@ import { CardComponent } from '../../shared/components/atoms/card/card.component
 import { MatchService } from '../../shared/services/match.service';
 import { Match } from '../../shared/models/match.model';
 import { CommonModule } from '@angular/common';
-import { LoaderService } from '../../shared/services/loader.service';
 
 @Component({
   selector: 'app-home',
@@ -26,19 +25,14 @@ import { LoaderService } from '../../shared/services/loader.service';
 export class HomeComponent implements OnInit {
   public matches: Match[] = [];
 
-  constructor(
-    private matchService: MatchService,
-    private loaderService: LoaderService
-  ) {}
+  constructor(private matchService: MatchService) {}
   ngOnInit(): void {
     this.loadMatches();
   }
 
   loadMatches() {
-    this.loaderService.show();
     this.matchService.ListMatch().subscribe(data => {
       this.matches = data.data;
     });
-    this.loaderService.hide();
   }
 }
