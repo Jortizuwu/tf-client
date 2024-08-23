@@ -13,13 +13,19 @@
     0 0 0 1.5px var(--sub-color),
     0 0 25px -17px var(--bg-color);
   border: 0;
-  border-radius: 12px;
+  border-radius: 7px;
   background-color: var(--bg-color);
   outline: none;
   color: var(--text-color);
   transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   cursor: text;
   z-index: 0;
+}
+
+.input-error {
+  box-shadow:
+    0 0 0 1.5px var(--error-color),
+    0 0 25px -17px var(--bg-color);
 }
 
 .input::placeholder {
@@ -33,7 +39,7 @@
 }
 
 .input:active {
-  transform: scale(0.95);
+  transform: scale(0.99);
 }
 
 .input:focus {

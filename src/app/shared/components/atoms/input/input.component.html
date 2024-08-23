@@ -1,5 +1,6 @@
 <div class="group">
   <input
+    [ngClass]="{ 'input-error': isError }"
     class="input"
     [type]="type"
     [placeholder]="placeholder"

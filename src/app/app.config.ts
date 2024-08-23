@@ -9,6 +9,7 @@ import {
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
+import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,6 +20,11 @@ export const appConfig: ApplicationConfig = {
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoadingInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
       multi: true,
     },
   ],

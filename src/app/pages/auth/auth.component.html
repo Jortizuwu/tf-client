@@ -1,6 +1,12 @@
 <section class="auth-container">
   <div class="auth-form">
-    <app-typography type="h3" label="Register" />
+    <div class="auth-form__header">
+      <app-typography type="h3" label="Register" class="mb-2" />
+      <ng-icon
+        name="heroUserPlus"
+        size="24"
+        color="var(--main-color)"></ng-icon>
+    </div>
     <form
       [formGroup]="registerForm"
       (ngSubmit)="onSubmitRegister()"
@@ -10,31 +16,42 @@
         type="text"
         placeholder="Username"
         id="username"
-        formControlName="username" />
+        formControlName="username"
+        [isError]="inputErrorRegister('username')" />
       <app-input
         type="text"
         placeholder="Email"
         id="email"
         aria-autocomplete="none"
         type="email"
-        formControlName="email" />
+        formControlName="email"
+        [isError]="inputErrorRegister('email')" />
       <app-input
         type="text"
         placeholder="Password"
         id="password"
         type="password"
-        formControlName="password" />
+        formControlName="password"
+        [isError]="inputErrorRegister('password')" />
       <app-input
         type="text"
         id="confirmPassword"
         placeholder="Confirm Password"
         type="password"
-        formControlName="confirmPassword" />
+        formControlName="confirmPassword"
+        [isError]="inputErrorRegister('confirmPassword')" />
       <app-button label="Register" [disabled]="!registerForm.valid" />
     </form>
   </div>
+
   <div class="auth-form">
-    <app-typography type="h3" label="Login" />
+    <div class="auth-form__header">
+      <app-typography type="h3" label="Login" />
+      <ng-icon
+        name="heroArrowRightEndOnRectangle"
+        size="24"
+        color="var(--main-color)"></ng-icon>
+    </div>
     <form
       [formGroup]="loginForm"
       (ngSubmit)="onSubmitLogin()"
@@ -44,12 +61,14 @@
         placeholder="Email"
         type="email"
         id="login-email"
-        formControlName="email" />
+        formControlName="email"
+        [isError]="inputErrorLogin('email')" />
       <app-input
         type="text"
         placeholder="Password"
         type="password"
         id="login-password"
+        [isError]="inputErrorLogin('password')"
         formControlName="password" />
       <app-button label="Login" type="submit" [disabled]="!loginForm.valid" />
     </form>

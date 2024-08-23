@@ -1,10 +1,11 @@
+import { NgClass } from '@angular/common';
 import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-input',
   standalone: true,
-  imports: [],
+  imports: [NgClass],
   templateUrl: './input.component.html',
   styleUrl: './input.component.css',
   providers: [
@@ -18,6 +19,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 export class InputComponent implements ControlValueAccessor {
   @Input() placeholder: string = '';
   @Input() type: string = 'text';
+  @Input() isError: boolean = false;
 
   value: string = '';
 
@@ -44,6 +46,10 @@ export class InputComponent implements ControlValueAccessor {
     const inputElement = event.target as HTMLInputElement;
     this.value = inputElement.value;
     this.onChange(this.value);
+  }
+
+  isErrorChange(value: boolean): void {
+    this.isError = value;
   }
 
   onBlur(): void {
