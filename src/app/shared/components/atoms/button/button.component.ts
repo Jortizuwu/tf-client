@@ -1,12 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
-export default interface IButtonProps {
-  variant: 'primary' | 'secondary' | 'floating';
-  size: 'small' | 'medium' | 'large';
-  disabled: boolean;
-  label: string;
-}
 @Component({
   selector: 'app-button',
   standalone: true,
@@ -14,7 +8,7 @@ export default interface IButtonProps {
   templateUrl: './button.component.html',
   styleUrl: './button.component.css',
 })
-export class ButtonComponent implements IButtonProps {
+export class ButtonComponent {
   @Input() variant: 'primary' | 'secondary' | 'floating' = 'primary';
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
   @Input() disabled: boolean = false;

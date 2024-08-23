@@ -1,21 +1,21 @@
 .button {
   border: none;
-  border-radius: var(--border-radius);
+  border-radius: 0.5rem;
   cursor: pointer;
-  padding: var(--padding-vertical) var(--padding-horizontal);
-  font-size: var(--font-size);
-  line-height: var(--line-height);
+  padding: 24px;
+  font-size: 1rem;
   transition: background-color 0.3s ease;
   color: var(--text-color);
-  height: var(--height);
+  width: 100%;
+  height: 2rem;
 }
 
 .button--primary {
-  background-color: var(--bg-color);
+  background-color: var(--sub-alt-color);
 }
 
 .button--primary:hover {
-  background-color: var(--sub-alt-color);
+  background-color: var(--sub-color);
 }
 
 .button--secondary {
@@ -28,6 +28,7 @@
 
 .button--floating {
   height: 40px;
+  width: 40px;
   position: absolute;
   bottom: 100px;
   right: 20px;

@@ -9,6 +9,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './link.component.css',
 })
 export class LinkComponent {
-  @Input()
-  label: string = '';
+  @Input() label: string = '';
+  @Input() route!: string;
+
 }

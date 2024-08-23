@@ -37,6 +37,12 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'auth',
+        title: 'auth',
+        loadComponent: () =>
+          import('./pages/auth/auth.component').then(m => m.AuthComponent),
+      },
+      {
         path: '',
         redirectTo: 'control-flow',
         pathMatch: 'full',

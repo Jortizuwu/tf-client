@@ -1,0 +1,57 @@
+<section class="auth-container">
+  <div class="auth-form">
+    <app-typography type="h3" label="Register" />
+    <form
+      [formGroup]="registerForm"
+      (ngSubmit)="onSubmitRegister()"
+      autocomplete="off"
+      class="auth-form__container">
+      <app-input
+        type="text"
+        placeholder="Username"
+        id="username"
+        formControlName="username" />
+      <app-input
+        type="text"
+        placeholder="Email"
+        id="email"
+        aria-autocomplete="none"
+        type="email"
+        formControlName="email" />
+      <app-input
+        type="text"
+        placeholder="Password"
+        id="password"
+        type="password"
+        formControlName="password" />
+      <app-input
+        type="text"
+        id="confirmPassword"
+        placeholder="Confirm Password"
+        type="password"
+        formControlName="confirmPassword" />
+      <app-button label="Register" [disabled]="!registerForm.valid" />
+    </form>
+  </div>
+  <div class="auth-form">
+    <app-typography type="h3" label="Login" />
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmitLogin()"
+      class="auth-form__container">
+      <app-input
+        type="text"
+        placeholder="Email"
+        type="email"
+        id="login-email"
+        formControlName="email" />
+      <app-input
+        type="text"
+        placeholder="Password"
+        type="password"
+        id="login-password"
+        formControlName="password" />
+      <app-button label="Login" type="submit" [disabled]="!loginForm.valid" />
+    </form>
+  </div>
+</section>
