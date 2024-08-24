@@ -14,6 +14,7 @@ import {
 } from '@angular/forms';
 import { NgIcon } from '@ng-icons/core';
 import { Router } from '@angular/router';
+import { toast, NgxSonnerToaster } from 'ngx-sonner';
 
 @Component({
   selector: 'app-auth',
@@ -25,11 +26,13 @@ import { Router } from '@angular/router';
     ButtonComponent,
     ReactiveFormsModule,
     NgIcon,
+    NgxSonnerToaster,
   ],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.css',
 })
 export class AuthComponent implements OnInit {
+  protected readonly toast = toast;
   registerForm = new FormGroup(
     {
       username: new FormControl('', Validators.required),
@@ -62,6 +65,7 @@ export class AuthComponent implements OnInit {
         .signup({ email, password, nickname: username })
         .subscribe(data => {
           localStorage.setItem('token', data.data.token.token);
+          toast.success('registered successfully !');
           this.router.navigate(['/']);
         });
     }
@@ -73,6 +77,7 @@ export class AuthComponent implements OnInit {
     if (email && password) {
       this.authService.signin(email, password).subscribe(data => {
         localStorage.setItem('token', data.data.token.token);
+        toast.success(`welcome to back ${data.data.nickname}`);
         this.router.navigate(['/']);
       });
     }
