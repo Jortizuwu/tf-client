@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { LabelComponent } from '../../atoms/label/label.component';
-import { DividerComponent } from '../../atoms/divider/divider.component';
+import { LabelComponent } from '../../ui/label/label.component';
+import { DividerComponent } from '../../ui/divider/divider.component';
 
 @Component({
   selector: 'app-settings',

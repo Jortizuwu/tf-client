@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
-import { ButtonComponent } from '../atoms/button/button.component';
-import { ModalComponent } from '../atoms/modal/modal.component';
+import { ButtonComponent } from '../ui/button/button.component';
+import { ModalComponent } from '../ui/modal/modal.component';
 import { ModalService } from '../../services/modal.service';
 
 @Component({

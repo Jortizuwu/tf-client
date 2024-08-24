@@ -1,9 +1,9 @@
 import { AuthService } from './../../shared/services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { LabelComponent } from '../../shared/components/atoms/label/label.component';
-import { InputComponent } from '../../shared/components/atoms/input/input.component';
-import { TypographyComponent } from '../../shared/components/atoms/typography/typography.component';
-import { ButtonComponent } from '../../shared/components/atoms/button/button.component';
+import { LabelComponent } from '../../shared/components/ui/label/label.component';
+import { InputComponent } from '../../shared/components/ui/input/input.component';
+import { TypographyComponent } from '../../shared/components/ui/typography/typography.component';
+import { ButtonComponent } from '../../shared/components/ui/button/button.component';
 import {
   AbstractControl,
   FormControl,

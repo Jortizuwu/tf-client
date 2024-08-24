@@ -4,7 +4,7 @@ import { MatchService } from './../../services/match.service';
 import { ActivatedRoute } from '@angular/router';
 import { ChatMessage } from '../../models/match.model';
 import { CommonModule } from '@angular/common';
-import { LabelComponent } from '../atoms/label/label.component';
+import { LabelComponent } from '../ui/label/label.component';
 import { CaretComponent } from './caret/caret.component';
 import { CharacterComponent } from './character/character.component';
 @Component({

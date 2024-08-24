@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LinkComponent } from '../../atoms/link/link.component';
+import { LinkComponent } from '../../ui/link/link.component';
 
 @Component({
   selector: 'app-layout-footer',

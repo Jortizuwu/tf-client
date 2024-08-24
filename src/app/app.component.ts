@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ThemesService } from './shared/services/themes.service';
-import { LoaderComponent } from './shared/components/atoms/loader/loader.component';
+import { LoaderComponent } from './shared/components/ui/loader/loader.component';
 import { CommonModule } from '@angular/common';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { ReactiveFormsModule } from '@angular/forms';

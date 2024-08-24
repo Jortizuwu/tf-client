@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
-import { LinkComponent } from '../../atoms/link/link.component';
+import { LinkComponent } from '../../ui/link/link.component';
 import { RouterLink } from '@angular/router';
 
 @Component({
