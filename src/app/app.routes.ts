@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -13,6 +14,8 @@ export const routes: Routes = [
         title: 'Change Detection',
         loadComponent: () =>
           import('./pages/home/home.component').then(m => m.HomeComponent),
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
       },
       {
         path: 'practice',
@@ -27,6 +30,7 @@ export const routes: Routes = [
         title: 'match',
         loadComponent: () =>
           import('./pages/match/match.component').then(m => m.MatchComponent),
+        canActivate: [AuthGuard],
       },
       {
         path: 'settings',
@@ -35,6 +39,7 @@ export const routes: Routes = [
           import('./pages/settings/settings.component').then(
             m => m.SettingsComponent
           ),
+        canActivate: [AuthGuard],
       },
       {
         path: 'auth',

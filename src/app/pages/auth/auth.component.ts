@@ -1,5 +1,5 @@
 import { AuthService } from './../../shared/services/auth.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LabelComponent } from '../../shared/components/atoms/label/label.component';
 import { InputComponent } from '../../shared/components/atoms/input/input.component';
 import { TypographyComponent } from '../../shared/components/atoms/typography/typography.component';
@@ -13,6 +13,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { NgIcon } from '@ng-icons/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -28,7 +29,7 @@ import { NgIcon } from '@ng-icons/core';
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.css',
 })
-export class AuthComponent {
+export class AuthComponent implements OnInit {
   registerForm = new FormGroup(
     {
       username: new FormControl('', Validators.required),
@@ -44,10 +45,26 @@ export class AuthComponent {
     password: new FormControl('', Validators.required),
   });
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
+  ngOnInit(): void {
+    if (this.authService.isAuthenticatedUser()) {
+      this.router.navigate(['/']);
+    }
+  }
 
   onSubmitRegister() {
-    console.warn(this.registerForm.value);
+    const { username, email, password } = this.registerForm.value;
+    if (username && email && password) {
+      this.authService
+        .signup({ email, password, nickname: username })
+        .subscribe(data => {
+          localStorage.setItem('token', data.data.token.token);
+          this.router.navigate(['/']);
+        });
+    }
   }
 
   onSubmitLogin() {
@@ -55,8 +72,8 @@ export class AuthComponent {
 
     if (email && password) {
       this.authService.signin(email, password).subscribe(data => {
-        this.loginForm.reset();
         localStorage.setItem('token', data.data.token.token);
+        this.router.navigate(['/']);
       });
     }
   }

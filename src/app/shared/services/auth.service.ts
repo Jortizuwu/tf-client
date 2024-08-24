@@ -7,16 +7,30 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root',
 })
 export class AuthService {
-  // TODO: CHANGE URL FOR ENV
-
+  private isAuthenticated = false;
   private authUrl = environment.apiUrl + '/auth';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.isAuthenticated = !!localStorage.getItem('token');
+  }
 
   signin(email: string, password: string) {
     return this.http.post<AuthResponse>(`${this.authUrl}/signin`, {
       email,
       password,
     });
+  }
+
+  signup(data: { email: string; password: string; nickname: string }) {
+    return this.http.post<AuthResponse>(`${this.authUrl}/signup`, { ...data });
+  }
+
+  isAuthenticatedUser(): boolean {
+    return this.isAuthenticated;
+  }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    this.isAuthenticated = false;
   }
 }

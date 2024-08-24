@@ -2,11 +2,11 @@ import {
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
-  HttpInterceptorFn,
   HttpRequest,
+  HttpErrorResponse,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, tap, throwError } from 'rxjs';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -16,14 +16,21 @@ export class AuthInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     const token = localStorage.getItem('token');
 
-    if (token) {
-      const cloned = req.clone({
-        headers: req.headers.set('Authorization', 'Bearer ' + token),
-      });
+    const cloned = token
+      ? req.clone({
+          headers: req.headers.set('Authorization', 'Bearer ' + token),
+        })
+      : req;
 
-      return next.handle(cloned);
-    } else {
-      return next.handle(req);
-    }
+    return next.handle(cloned).pipe(
+      tap((event: HttpEvent<unknown>) => {}),
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          console.log('Token inválido. Eliminando el token.');
+          localStorage.removeItem('token');
+        }
+        return throwError(() => error);
+      })
+    );
   }
 }
