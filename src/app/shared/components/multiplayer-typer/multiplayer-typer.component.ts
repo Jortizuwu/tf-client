@@ -1,24 +1,31 @@
-import { UserTypingService } from './../../services/UserTypingService.service';
+import { UserTypingService } from '../../services/UserTypingService.service';
 import { Component, HostListener, OnInit } from '@angular/core';
-import { MatchService } from './../../services/match.service';
+import { MatchService } from '../../services/match.service';
 import { ActivatedRoute } from '@angular/router';
 import { ChatMessage } from '../../models/match.model';
 import { CommonModule } from '@angular/common';
 import { LabelComponent } from '../ui/label/label.component';
-import { CaretComponent } from './caret/caret.component';
-import { CharacterComponent } from './character/character.component';
+import { OpponentComponent } from '../opponent-typer/opponent.component';
+import { CaretComponent } from '../caret/caret.component';
+import { CharacterComponent } from '../character/character.component';
+import { RoomService } from '../../services/room.service';
 @Component({
-  selector: 'app-typer',
+  selector: 'app-multiplayer-typer',
   standalone: true,
-  imports: [LabelComponent, CommonModule, CaretComponent, CharacterComponent],
-  templateUrl: './typer.component.html',
-  styleUrl: './typer.component.css',
+  imports: [
+    LabelComponent,
+    CommonModule,
+    CaretComponent,
+    CharacterComponent,
+    OpponentComponent,
+  ],
+  templateUrl: './multiplayer-typer.component.html',
+  styleUrl: './multiplayer-typer.component.css',
 })
-export class TyperComponent implements OnInit {
+export class TyperMultiplayerComponent implements OnInit {
   text: string[] = [];
   focused = true;
   letters: string[] = [];
-  isPractice: boolean = false;
 
   messageInput: string = '';
   matchId: string = '';
@@ -26,6 +33,7 @@ export class TyperComponent implements OnInit {
 
   constructor(
     private userTypingService: UserTypingService,
+    private roomService: RoomService,
     private matchService: MatchService,
     private route: ActivatedRoute
   ) {}
@@ -76,7 +84,7 @@ export class TyperComponent implements OnInit {
     }
 
     this.userTypingService.setTextUserTyping(this.text.join(''));
-    // this.sendMessage(this.userType);
+    this.sendMessage();
   }
 
   get getTextToWriteToString() {
@@ -84,33 +92,21 @@ export class TyperComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.isPracticeMode();
-    if (!this.isPractice) {
-      this.matchId = this.route.snapshot.params['id'];
-      this.getMatchData();
-      // const roomId = 'f8183a7e-f91b-4e81-bef9-7123f9c76a28';
-    }
-
-    // this.matchService.joinRoom(roomId);
-    // this.matchService.getMessageSubject().subscribe((messages: string) => {
-    //   this.userType = messages;
-    // });
-  }
-
-  isPracticeMode() {
-    const id = this.route.snapshot.params['id'];
-
-    if (!id) {
-      this.isPractice = true;
-    }
+    this.matchId = this.route.snapshot.params['id'];
+    this.getMatchData();
+    this.roomService.joinRoom(this.matchId);
+    this.roomService.getMessageSubject().subscribe((messages: string) => {
+      console.log({ messages });
+      // this.text = messages.split('');
+    });
   }
 
   sendMessage() {
-    // this.matchService.sendMessage(
-    //   'f8183a7e-f91b-4e81-bef9-7123f9c76a28',
-    //   message
-    // );
-    // this.messageInput = '';
+    this.roomService.sendMessage(
+      'f8183a7e-f91b-4e81-bef9-7123f9c76a28',
+      this.text.join('')
+    );
+    this.messageInput = '';
   }
 
   getMatchData() {

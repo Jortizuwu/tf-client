@@ -1,0 +1,60 @@
+<div class="typer">
+  <p class="text-center">lenguaje!</p>
+  <div
+    class="typer--wrapper"
+    [ngClass]="{
+      'opacity-0': focused,
+      'opacity-100': focused,
+    }">
+    <svg
+      style="height: 24px; width: 24px; margin-right: 10px"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg">
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M5 12h14M12 5l7 7-7 7"></path>
+    </svg>
+    <span> Click here or start typing to focus </span>
+  </div>
+  <div
+    [ngClass]="{
+      'blur-none': focused,
+      'cursor-pointer blur-md': focused,
+    }"
+    class="border-none"
+    tabindex="0"
+    (focus)="onFocus()"
+    (blur)="onBlur()">
+    <div class="typer--content">
+      <div class="typer--text__back p-absolute Z-100">
+        <app-character
+          *ngFor="let letter of letters; let i = index"
+          [text]="text"
+          [letter]="letter"
+          [isMain]="false"
+          [index]="i">
+        </app-character>
+      </div>
+      <div class="typer--text__back p-absolute">
+        <app-character
+          *ngFor="let letter of text; let i = index"
+          [text]="text"
+          [letter]="letter"
+          [isMain]="true"
+          [index]="i">
+        </app-character>
+        <div>
+          <app-caret class="opacity-100" />
+        </div>
+      </div>
+    </div>
+    <app-label class="text-center" text="lenguaje!" />
+  </div>
+</div>
+<!-- <div class="typer--opponent">
+  <app-opponent></app-opponent>
+</div> -->

@@ -1,0 +1,40 @@
+.typer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  height: 100%;
+  width: 100%;
+  border: none;
+  position: relative;
+}
+
+.typer--content {
+  position: relative;
+  height: 400px;
+  align-items: start;
+  padding: 40px;
+}
+
+.typer--text__back {
+  font-size: 1.6rem;
+  line-height: 1.5rem;
+  font-weight: 200;
+  text-align: start;
+  align-items: baseline;
+  display: inline-flex;
+  width: auto;
+  gap: 0;
+  flex-direction: row;
+  align-content: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.p-absolute {
+  position: absolute;
+}
+
+.z-100 {
+  z-index: 100;
+}

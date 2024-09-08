@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import SockJS from 'sockjs-client';
 import { CompatClient, Stomp } from '@stomp/stompjs';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,10 @@ export class RoomService {
     ''
   );
   private roomId: string | null = null;
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private route: ActivatedRoute
+  ) {
     this.initConnectionSocket();
   }
   private initConnectionSocket() {
@@ -22,18 +26,18 @@ export class RoomService {
     this.stompClient = Stomp.over(socket);
 
     this.stompClient.connect(
-      {}
-      // (frame: any) => {
-      //   console.log('Connected: ' + frame);
-      //   if (this.roomId) {
-      //     this.subscribeToRoom(this.roomId);
-      //   }
-      // },
-      // (error: any) => {
-      //   console.error('STOMP connection error: ', error);
-      // }
+      (frame: any) => {
+        console.log('Connected: ' + frame);
+        if (this.roomId) {
+          this.subscribeToRoom(this.roomId);
+        }
+      },
+      (error: any) => {
+        console.error('STOMP connection error: ', error);
+      }
     );
   }
+
   private subscribeToRoom(roomId: string) {
     this.stompClient.subscribe(
       `/room/${roomId}`,
@@ -49,14 +53,13 @@ export class RoomService {
       this.subscribeToRoom(roomId);
     } else {
       this.stompClient.connect(
-        {}
-        // (frame) => {
-        //   console.log('Connected: ' + frame);
-        //   this.subscribeToRoom(roomId);
-        // },
-        // (error: any) => {
-        //   console.error('STOMP connection error: ', error);
-        // }
+        (frame: any) => {
+          console.log('Connected: ' + frame);
+          this.subscribeToRoom(roomId);
+        },
+        (error: any) => {
+          console.error('STOMP connection error: ', error);
+        }
       );
     }
   }

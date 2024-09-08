@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ButtonComponent } from '../../shared/components/ui/button/button.component';
 import { LabelComponent } from '../../shared/components/ui/label/label.component';
 import { DividerComponent } from '../../shared/components/ui/divider/divider.component';
-import { TyperComponent } from '../../shared/components/typer/typer.component';
+import { TyperMultiplayerComponent } from '../../shared/components/multiplayer-typer/multiplayer-typer.component';
 import { CardComponent } from '../../shared/components/ui/card/card.component';
 import { MatchService } from '../../shared/services/match.service';
 import { Match } from '../../shared/models/match.model';
@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
     ButtonComponent,
     LabelComponent,
     DividerComponent,
-    TyperComponent,
+    TyperMultiplayerComponent,
     CardComponent,
   ],
   templateUrl: './home.component.html',

@@ -41,6 +41,18 @@
   flex-wrap: wrap;
 }
 
+.typer--opponent {
+  height: 40%;
+  max-width: 600px;
+  width: 40%;
+  max-height: 500px;
+  border: 1px solid var(--caret-color);
+  border-radius: 10px;
+  position: absolute;
+  right: 10px;
+  bottom: 60px;
+}
+
 .p-absolute {
   position: absolute;
 }

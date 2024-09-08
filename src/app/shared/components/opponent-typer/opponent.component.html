@@ -1,0 +1,24 @@
+<div class="typer">
+  <div class="border-none">
+    <div class="typer--content">
+      <div class="typer--text__back p-absolute Z-100">
+        <app-character
+          *ngFor="let letter of letters; let i = index"
+          [text]="text"
+          [letter]="letter"
+          [isMain]="false"
+          [index]="i">
+        </app-character>
+      </div>
+      <div class="typer--text__back p-absolute">
+        <app-character
+          *ngFor="let letter of text; let i = index"
+          [text]="text"
+          [letter]="letter"
+          [isMain]="true"
+          [index]="i">
+        </app-character>
+      </div>
+    </div>
+  </div>
+</div>

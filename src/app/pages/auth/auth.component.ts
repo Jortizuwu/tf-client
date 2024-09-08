@@ -44,8 +44,8 @@ export class AuthComponent implements OnInit {
   );
 
   loginForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', Validators.required),
+    email: new FormControl('yo1@yo.com', [Validators.required, Validators.email]),
+    password: new FormControl('Admin123#', Validators.required),
   });
 
   constructor(

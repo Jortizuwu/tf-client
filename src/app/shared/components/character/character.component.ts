@@ -1,4 +1,3 @@
-import { UserTypingService } from './../../../services/UserTypingService.service';
 import { CommonModule } from '@angular/common';
 import {
   Component,
@@ -8,6 +7,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { CaretComponent } from '../caret/caret.component';
+import { UserTypingService } from '../../services/UserTypingService.service';
 
 @Component({
   selector: 'app-character',

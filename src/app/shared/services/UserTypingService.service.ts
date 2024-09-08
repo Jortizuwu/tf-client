@@ -8,6 +8,10 @@ export class UserTypingService {
   private textUserTyping: string = '';
   private textToWrite: string = '';
 
+  private opponentIsTyping: boolean = false;
+  private opponentTextUserTyping: string = '';
+  private opponentTextToWrite: string = '';
+
   constructor() {}
 
   setIsUserTyping(isUserTyping: boolean) {
@@ -32,5 +36,29 @@ export class UserTypingService {
 
   getTextToWrite(): string {
     return this.textToWrite;
+  }
+
+  setIsOpponentTyping(isOpponentTyping: boolean) {
+    this.opponentIsTyping = isOpponentTyping;
+  }
+
+  getIsOpponentTyping(): boolean {
+    return this.opponentIsTyping;
+  }
+
+  setTextOpponentTyping(textOpponentTyping: string) {
+    this.opponentTextUserTyping = textOpponentTyping;
+  }
+
+  getTextOpponentTyping(): string {
+    return this.opponentTextUserTyping;
+  }
+
+  setTextOpponentToWrite(textOpponentToWrite: string) {
+    this.opponentTextToWrite = textOpponentToWrite;
+  }
+
+  getTextOpponentToWrite(): string {
+    return this.opponentTextToWrite;
   }
 }

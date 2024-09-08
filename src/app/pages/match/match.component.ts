@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { TyperComponent } from '../../shared/components/typer/typer.component';
+import { TyperMultiplayerComponent } from '../../shared/components/multiplayer-typer/multiplayer-typer.component';
 
 @Component({
   selector: 'app-match',
   standalone: true,
-  imports: [TyperComponent],
+  imports: [TyperMultiplayerComponent],
   templateUrl: './match.component.html',
   styleUrl: './match.component.css',
 })

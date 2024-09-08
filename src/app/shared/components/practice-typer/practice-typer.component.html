@@ -1,10 +1,11 @@
 <div class="typer">
   <p class="text-center">lenguaje!</p>
   <div
+    (click)="onFocus()"
     class="typer--wrapper"
     [ngClass]="{
       'opacity-0': focused,
-      'opacity-100': focused,
+      'opacity-100': !focused,
     }">
     <svg
       style="height: 24px; width: 24px; margin-right: 10px"
@@ -18,12 +19,12 @@
         stroke-width="2"
         d="M5 12h14M12 5l7 7-7 7"></path>
     </svg>
-    <span> Click here or start typing to focus </span>
+    <span class="cursor-pointer"> Click here or start typing to focus </span>
   </div>
   <div
     [ngClass]="{
       'blur-none': focused,
-      'cursor-pointer blur-md': focused,
+      'cursor-pointer blur-md': !focused,
     }"
     class="border-none"
     tabindex="0"
@@ -48,10 +49,9 @@
           [index]="i">
         </app-character>
         <div>
-          <app-caret class="opacity-100" />
+          <app-caret *ngIf="focused" class="opacity-100" />
         </div>
       </div>
     </div>
-    <app-label class="text-center" text="lenguaje!" />
   </div>
 </div>
