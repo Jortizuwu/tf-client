@@ -5,6 +5,9 @@ import { LabelComponent } from '../ui/label/label.component';
 import { OpponentComponent } from '../opponent-typer/opponent.component';
 import { CaretComponent } from '../caret/caret.component';
 import { CharacterComponent } from '../character/character.component';
+import { SettingsPracticeComponent } from './settings/settings.component';
+import { TimerComponent } from '../timer/timer.component';
+import { TimerService } from '../../services/timer.service';
 
 const LOCAL_QUOTES = [
   'Hello, how are you?',
@@ -28,23 +31,35 @@ const LOCAL_QUOTES = [
     CaretComponent,
     CharacterComponent,
     OpponentComponent,
+    SettingsPracticeComponent,
+    TimerComponent,
   ],
   templateUrl: './practice-typer.component.html',
   styleUrl: './practice-typer.component.css',
 })
 export class TyperPracticeComponent implements OnInit {
   text: string[] = [];
-  focused = true;
+  start = false;
   letters: string[] = [];
 
-  constructor(private userTypingService: UserTypingService) {}
+  constructor(
+    private userTypingService: UserTypingService,
+    private timerService: TimerService
+  ) {}
 
   ngOnInit(): void {
-    this.startPractice();
+    if (this.start) {
+      this.timerService.start();
+    }
+    this.setQuote();
   }
 
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent) {
+    if (!this.start) {
+      return;
+    }
+
     if (
       this.text.length === this.userTypingService.getTextToWrite().length &&
       event.key !== 'Backspace'
@@ -95,17 +110,13 @@ export class TyperPracticeComponent implements OnInit {
     return this.userTypingService.getTextToWrite();
   }
 
-  startPractice() {
+  setQuote() {
     const randomIndex = Math.floor(Math.random() * LOCAL_QUOTES.length);
     this.userTypingService.setTextToWrite(LOCAL_QUOTES[randomIndex]);
     this.letters = LOCAL_QUOTES[randomIndex].split('');
   }
 
-  onFocus() {
-    this.focused = true;
-  }
-
-  onBlur() {
-    this.focused = false;
+  startPractice() {
+    this.start = true;
   }
 }

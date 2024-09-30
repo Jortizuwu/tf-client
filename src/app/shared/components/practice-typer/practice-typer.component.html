@@ -1,11 +1,10 @@
 <div class="typer">
-  <p class="text-center">lenguaje!</p>
+  <app-typer-practice-settings />
   <div
-    (click)="onFocus()"
     class="typer--wrapper"
     [ngClass]="{
-      'opacity-0': focused,
-      'opacity-100': !focused,
+      'opacity-0': start,
+      'opacity-100': !start,
     }">
     <svg
       style="height: 24px; width: 24px; margin-right: 10px"
@@ -21,15 +20,14 @@
     </svg>
     <span class="cursor-pointer"> Click here or start typing to focus </span>
   </div>
+  <app-timer *ngIf="start" />
   <div
     [ngClass]="{
-      'blur-none': focused,
-      'cursor-pointer blur-md': !focused,
+      'blur-none': start,
+      'cursor-pointer blur-md': !start,
     }"
-    class="border-none"
-    tabindex="0"
-    (focus)="onFocus()"
-    (blur)="onBlur()">
+    (click)="startPractice()"
+    class="border-none">
     <div class="typer--content">
       <div class="typer--text__back p-absolute Z-100">
         <app-character
@@ -48,9 +46,7 @@
           [isMain]="true"
           [index]="i">
         </app-character>
-        <div>
-          <app-caret *ngIf="focused" class="opacity-100" />
-        </div>
+        <app-caret *ngIf="start" class="opacity-100" />
       </div>
     </div>
   </div>
